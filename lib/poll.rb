@@ -11,7 +11,7 @@ class Poll
   end
 
   def add_vote(vote)
-    if vote.candidate =='INVALID'
+    unless candidates.include?(vote.candidate)
       raise InvalidCandidateError
     end
 
