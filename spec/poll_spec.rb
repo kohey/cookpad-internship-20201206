@@ -18,4 +18,13 @@ RSpec.describe Poll do
       expect(poll.votes).to eq [vote]
     end
   end
+
+  context 'with a vote that that has an invalid candidate' do
+    it 'raises InvalidCandidateError' do
+      poll = Poll.new('Awesome Poll', ['Alice', 'Bob'])
+      vote = Vote.new('Miyoshi', 'INVALID')
+
+      expect { poll.add_vote(vote) }.to raise_error Poll::InvalidCandidateError
+    end
+  end
 end
